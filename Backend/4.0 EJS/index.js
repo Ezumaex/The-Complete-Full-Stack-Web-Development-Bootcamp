@@ -3,20 +3,8 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
-app.set("view engine", "ejs");
-
-const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
-function getDay(dateIndex){
-  return dayNames[dateIndex];
-}
-
-const today = new Date().getDay();
-
-const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
 app.get("/", (req, res) => {
-  const today = new Date();
+  const today = new Date("June 29, 2025 11:13:00");
   const day = today.getDay();
 
   let type = "a weekday";
@@ -27,8 +15,7 @@ app.get("/", (req, res) => {
     adv = "it's time to have some fun";
   }
 
-  res.render("index", {
-    dayName: dayNames[day],
+  res.render("index.ejs", {
     dayType: type,
     advice: adv,
   });
